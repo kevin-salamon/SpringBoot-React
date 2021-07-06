@@ -22,8 +22,8 @@ public class Workout {
 	@Column(name = "USER_ID")
 	private long userId;
 	
-	@Column(name = "CURRENT_DATE")
-	private Date currentDate;
+	@Column(name = "WORKOUT_DATE")
+	private Date workoutDate;
 
 	public long getId() {
 		return id;
@@ -41,12 +41,12 @@ public class Workout {
 		this.userId = userId;
 	}
 
-	public Date getCurrentDate() {
-		return currentDate;
+	public Date getWorkoutDate() {
+		return workoutDate;
 	}
 
-	public void setCurrentDate(Date currentDate) {
-		this.currentDate = currentDate;
+	public void setWorkoutDate(Date workoutDate) {
+		this.workoutDate = workoutDate;
 	}
 	
 }
