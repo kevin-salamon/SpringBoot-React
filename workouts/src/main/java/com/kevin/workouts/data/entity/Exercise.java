@@ -20,8 +20,8 @@ public class Exercise {
 	@Column(name = "WORKOUT_ID")
 	private long workoutId;
 	
-	@Column(name = "NAME")
-	private String name;
+	@Column(name = "EXERCISE_NAME")
+	private String exerciseName;
 	
 	@Column(name = "SETS")
 	private Integer sets;
@@ -31,9 +31,6 @@ public class Exercise {
 	
 	@Column(name = "WEIGHT")
 	private Integer weight;
-	
-	@Column(name = "SUCCESS")
-	private Boolean success;
 
 	public long getId() {
 		return id;
@@ -51,12 +48,12 @@ public class Exercise {
 		this.workoutId = workoutId;
 	}
 
-	public String getName() {
-		return name;
+	public String getExerciseName() {
+		return exerciseName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setExerciseName(String exerciseName) {
+		this.exerciseName = exerciseName;
 	}
 
 	public Integer getSets() {
@@ -81,14 +78,6 @@ public class Exercise {
 
 	public void setWeight(Integer weight) {
 		this.weight = weight;
-	}
-
-	public Boolean getSuccess() {
-		return success;
-	}
-
-	public void setSuccess(Boolean success) {
-		this.success = success;
 	}
 	
 }

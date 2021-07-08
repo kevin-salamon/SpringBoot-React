@@ -43,6 +43,15 @@ public class WorkoutController {
 		return new ResponseEntity<Workout>(HttpStatus.NO_CONTENT);
 	}
 	
+	@RequestMapping(value = "/workout/user/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Workout>> getWorkoutByUserId(@PathVariable("id") long id) {
+		List<Workout> workouts = workoutRepository.findByUserId(id);
+		if (workouts.isEmpty()) {
+			return new ResponseEntity<List<Workout>>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<List<Workout>>(workouts, HttpStatus.OK);
+	}
+	
 	@RequestMapping(value = "/workout/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Workout> deleteWorkout(@PathVariable("id") long id) {
 		
@@ -62,6 +71,7 @@ public class WorkoutController {
 		
 		if (optionalWorkout.isPresent()) {
 			Workout currentWorkout = optionalWorkout.get();
+			// look up how to make these puts only occur if filled (check if that's even happening)
 			currentWorkout.setUserId(workout.getUserId());
 			currentWorkout.setWorkoutDate(workout.getWorkoutDate());
 			workoutRepository.save(currentWorkout);
@@ -72,7 +82,7 @@ public class WorkoutController {
 		
 	}
 	
-	@RequestMapping(value = "workout", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/workout", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Workout> createWorkout(@RequestBody Workout workout, UriComponentsBuilder ucBuilder) {
 		if (workoutRepository.existsById(workout.getId())) {
 			return new ResponseEntity<Workout>(HttpStatus.CONFLICT);

@@ -1,5 +1,10 @@
 INSERT INTO user (USER_NAME, FIRST_NAME, LAST_NAME, EMAIL) VALUES ('mrbananalisk', 'Kevin', 'Salamon', 'theksalamon@gmail.com');
+INSERT INTO user (USER_NAME, FIRST_NAME, LAST_NAME, EMAIL) VALUES ('testguy', 'Sevin', 'Kalamon', 'theskalamon@gmail.com');
 
 INSERT INTO workout (USER_ID, WORKOUT_DATE) VALUES (1, '2021-06-23');
+INSERT INTO workout (USER_ID, WORKOUT_DATE) VALUES (1, '2021-07-08');
+INSERT INTO workout (USER_ID, WORKOUT_DATE) VALUES (2, '2021-07-10');
 
 INSERT INTO exercise (WORKOUT_ID, EXERCISE_NAME, SETS, REPS, WEIGHT) VALUES (1, 'Squats', 5, 5, 95);
+INSERT INTO exercise (WORKOUT_ID, EXERCISE_NAME, SETS, REPS, WEIGHT) VALUES (1, 'Bench Press', 5, 5, 135);
+INSERT INTO exercise (WORKOUT_ID, EXERCISE_NAME, SETS, REPS, WEIGHT) VALUES (2, 'Bicep Curl', 3, 8, 25);
