@@ -1,8 +1,12 @@
 import Routing from './Pages/Routing';
+import { Provider } from 'react-redux';
+import store from './store'
 
 function App() {
   return (
-    <Routing/>
+    <Provider store={store}>
+      <Routing/>
+    </Provider>
   );
 }
 
