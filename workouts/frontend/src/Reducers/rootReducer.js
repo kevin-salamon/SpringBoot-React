@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-// import specific reducers here
+import routingReducer from './routingReducer';
 
 export default combineReducers({
-    // package reducers here
+    routingReducer
 });

@@ -1,1 +1,1 @@
-// export default SAMPLE_TYPE = 'SAMPLE_TYPE';
+export const SET_PAGE_SELECTED = 'SET_PAGE_SELECTED';

@@ -3,7 +3,9 @@ import React, { useEffect } from 'react';
 const Header = () => {
 
     return (
-        <div>CHA</div>
+        <div className='header'>
+
+        </div>
     )
 }
 
