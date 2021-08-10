@@ -2,13 +2,7 @@ import React, { useEffect } from 'react';
 
 const Routing = ({
     pageSelected,
-    setPageSelected
 }) => {
-
-    useEffect(() => {
-        console.log("USE EFFECT")
-        setPageSelected('test state');
-    }, [setPageSelected]);
 
     let chosenPage = null;
     switch (pageSelected) {

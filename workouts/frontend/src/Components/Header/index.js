@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
 import Header from './Header';
 import {
-
-} from '../../Actions';
+    setPageSelected
+} from '../../Actions/routingActions.js';
 
 const mapStateToProps = (state) => ({
-
+    pageSelected: state.routingReducer.pageSelected
 });
   
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        setPageSelected: (page) => dispatch(setPageSelected(page))
     };
 };
   

@@ -4,19 +4,18 @@ import {
 } from '../Constants/actionTypes';
 
 const initialState = {
-    pageSelcted: 'overview'
+    pageSelected: 'overview'
 };
 
 export default (state = initialState, action) => {
-    switch (action.type) {
-      case SET_PAGE_SELECTED: {
-        return {
-          ...state,
-          pageSelected: action.paylaod
-        }
-      }
+  switch (action.type) {
+      case SET_PAGE_SELECTED:
+          return {
+              ...state,
+              pageSelected: action.payload
+          };
       default:
-        return state;
-    }
+          return state;
+  }
 };
   
