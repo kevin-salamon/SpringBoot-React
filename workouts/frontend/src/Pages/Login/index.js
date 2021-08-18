@@ -1,16 +1,19 @@
 import { connect } from 'react-redux';
 import Login from './Login';
 import {
-    setPageSelected
+    setPageSelected,
+    setBackgroundColor
 } from '../../Actions';
 
 const mapStateToProps = (state) => ({
-    pageSelected: state.routingReducer.pageSelected
+    pageSelected: state.routingReducer.pageSelected,
+    backgroundColor: state.routingReducer.backgroundColor
 });
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        setPageSelected: (page) => dispatch(setPageSelected(page))
+        setPageSelected: (page) => dispatch(setPageSelected(page)),
+        setBackgroundColor: (color) => dispatch(setBackgroundColor(color))
     };
 };
   

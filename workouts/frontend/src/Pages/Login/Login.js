@@ -23,6 +23,10 @@ const StyledLogin = styled.div`
         .form-container {
             grid-column: 1 / span 1;
             position: relative;
+
+            .login-box {
+                
+            }
         }
 
         .design-container {
@@ -30,6 +34,7 @@ const StyledLogin = styled.div`
             display: flex;
             align-items: center;
             justify-content: center;
+            cursor: pointer;
 
             .design-box {
                 width: 95%;
@@ -42,7 +47,14 @@ const StyledLogin = styled.div`
     }
 `;
 
-const Login = () => {
+const Login = ({
+    setBackgroundColor,
+    backgroundColor
+}) => {
+
+    const handleSetBackgroundColor = () => {
+        setBackgroundColor('blue');
+    }
 
     return (
         <>
@@ -52,8 +64,8 @@ const Login = () => {
                     <div className='form-container'>
 
                     </div>
-                    <div className='design-container'>
-                        <div className='design-box'>
+                    <div className='design-container' onClick={() => handleSetBackgroundColor()}>
+                        <div className='design-box' style={{backgroundColor: backgroundColor}}>
 
                         </div>
                     </div>
