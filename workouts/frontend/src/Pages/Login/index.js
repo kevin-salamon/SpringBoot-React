@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Body from './Body';
+import Login from './Login';
 import {
     setPageSelected
 } from '../../Actions';
@@ -14,9 +14,9 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
   
-const BodyContainer = connect(
+const LoginContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Body);
+)(Login);
   
-export default BodyContainer;
+export default LoginContainer;

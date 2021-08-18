@@ -4,7 +4,7 @@ import {
 } from '../Constants/actionTypes';
 
 const initialState = {
-    pageSelected: 'overview'
+    pageSelected: 'login'
 };
 
 export default (state = initialState, action) => {
