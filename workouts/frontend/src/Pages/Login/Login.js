@@ -65,7 +65,7 @@ const Login = ({
             <StyledLogin>
                 <div className='login-container'>
                     <div className='form-container'>
-
+                        <p>Test</p>
                     </div>
                     <div className='design-container' onClick={() => handleSetBackgroundColor()}>
                         <div className='design-box' style={{backgroundColor: backgroundColor}}>
