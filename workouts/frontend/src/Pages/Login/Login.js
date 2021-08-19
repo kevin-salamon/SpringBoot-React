@@ -49,11 +49,14 @@ const StyledLogin = styled.div`
 
 const Login = ({
     setBackgroundColor,
-    backgroundColor
+    backgroundColor,
+    fontColor,
+    setFontColor
 }) => {
 
     const handleSetBackgroundColor = () => {
         setBackgroundColor('blue');
+        setFontColor('red');
     }
 
     return (
@@ -66,7 +69,7 @@ const Login = ({
                     </div>
                     <div className='design-container' onClick={() => handleSetBackgroundColor()}>
                         <div className='design-box' style={{backgroundColor: backgroundColor}}>
-
+                            <p style={{color: fontColor}}>Test</p>
                         </div>
                     </div>
                 </div>
