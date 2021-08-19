@@ -1,12 +1,14 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
     SET_PAGE_SELECTED,
-    SET_BACKGROUND_COLOR
+    SET_BACKGROUND_COLOR,
+    SET_FONT_COLOR
 } from '../Constants/actionTypes';
 
 const initialState = {
     pageSelected: 'login',
     backgroundColor: 'red',
+    fontColor: 'black'
 };
 
 export default (state = initialState, action) => {
@@ -21,8 +23,12 @@ export default (state = initialState, action) => {
             ...state,
             backgroundColor: action.payload
         };
+        case SET_FONT_COLOR:
+            return {
+                ...state,
+                fontColor: action.payload
+            };  
       default:
           return state;
   }
 };
-  
