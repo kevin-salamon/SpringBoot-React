@@ -1,25 +1,22 @@
 import { connect } from 'react-redux';
-import Header from './Header';
+import NavMenu from './NavMenu';
 import {
-    setPageSelected,
     setNavMenuShow
 } from '../../Actions';
 
 const mapStateToProps = (state) => ({
-    pageSelected: state.routingReducer.pageSelected,
     navMenuShow: state.viewReducer.navMenuShow
 });
   
 const mapDispatchToProps = (dispatch) => {
     return {
-        setPageSelected: (page) => dispatch(setPageSelected(page)),
         setNavMenuShow: (bool) => dispatch(setNavMenuShow(bool)) 
     };
 };
   
-const HeaderContainer = connect(
+const NavMenuContainer = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Header);
+)(NavMenu);
   
-export default HeaderContainer;
+export default NavMenuContainer;

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from './Pages/Login';
 import { useEffect } from 'react';
+import Overview from './Pages/Overview';
 // import './Styles/index.scss';
 
 const StyledApp = styled.div`
@@ -22,7 +23,7 @@ function App() {
           <StyledApp>
             <Switch>
               <Route exact path='/' component={Login}/>
-              {/* <Route exact path='/overview' component={Overview}/> */}
+              <Route exact path='/overview' component={Overview}/>
             </Switch>
           </StyledApp>
         </Provider>

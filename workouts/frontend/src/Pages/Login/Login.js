@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import { useHistory } from "react-router-dom";
 // import Header from '../../Components/Header';
 
 const StyledLogin = styled.div`
@@ -41,40 +42,32 @@ const StyledLogin = styled.div`
                 height: 95%;
                 border-radius: 12px;
                 background-color: #6CD4FF;
-                box-shadow: 1px 1px 3px 1px #3b3b3b80;
+                // box-shadow: 1px 1px 3px 1px #3b3b3b80;
             }
         }
     }
 `;
 
-const Login = ({
-    setBackgroundColor,
-    backgroundColor,
-    fontColor,
-    setFontColor
-}) => {
+const Login = () => {
+    const history = useHistory();
 
-    const handleSetBackgroundColor = () => {
-        setBackgroundColor('blue');
-        setFontColor('red');
+    const handleLogin = () => {
+        history.push('/overview');
     }
 
     return (
-        <>
-            {/* <Header/> */}
-            <StyledLogin>
-                <div className='login-container'>
-                    <div className='form-container'>
-                        <p>Test</p>
-                    </div>
-                    <div className='design-container' onClick={() => handleSetBackgroundColor()}>
-                        <div className='design-box' style={{backgroundColor: backgroundColor}}>
-                            <p style={{color: fontColor}}>Test</p>
-                        </div>
+        <StyledLogin>
+            <div className='login-container'>
+                <div className='form-container'>
+
+                </div>
+                <div className='design-container' onClick={() => handleLogin()}>
+                    <div className='design-box'>
+
                     </div>
                 </div>
-            </StyledLogin>
-        </>
+            </div>
+        </StyledLogin>
     )
 }
 
