@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
+import gym from '../../Assets/Images/gym.jpg'
 // import Header from '../../Components/Header';
 
 const StyledLogin = styled.div`
@@ -9,8 +10,28 @@ const StyledLogin = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #C792DF;
+    // background-color: #C792DF;
     position: relative;
+
+    .background-container {
+        z-index: -2;
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: black;
+        background-size: cover;
+        background-repeat: no-repeat;
+        // background-position: center center;
+        opacity: 0.5;
+    }
+
+    .layered-container {
+        z-index: -1;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #edd29840;
+    }
 
     .login-container {
         height: 70%;
@@ -57,6 +78,10 @@ const Login = () => {
 
     return (
         <StyledLogin>
+            <div className='background-container' style={{backgroundImage: `url(${gym})`,}}>
+
+            </div>
+            <div className='layered-container'></div>
             <div className='login-container'>
                 <div className='form-container'>
 
