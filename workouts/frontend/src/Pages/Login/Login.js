@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
 import gym from '../../Assets/Images/gym.jpg'
+import ArrowRightAltRoundedIcon from '@material-ui/icons/ArrowRightAltRounded';
 // import Header from '../../Components/Header';
 
 const StyledLogin = styled.div`
@@ -94,11 +95,12 @@ const StyledLogin = styled.div`
                         align-items: center;
 
                         p {
-                            color: #3b3b3bcc;
+                            color: #3b3b3b;
                             margin-block: 0px;
-                            font-family: 'Merriweather', serif;
+                            font-family: 'Fredoka One', cursive;
                             font-size: 18px;
                             font-weight: 600;
+                            letter-spacing: 1px;
                         }
                     }
                 }
@@ -109,7 +111,103 @@ const StyledLogin = styled.div`
                     left: 0;
                     height: 65%;
                     width: 100%;
-                    border: 1px solid black;
+                    display: grid;
+                    grid-template-rows: 2fr 3fr 2fr;
+
+                    .intro-box {
+                        grid-row: 1 / span 1;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+
+                        .title {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            width: 100%;
+                            height: min-content;
+
+                            p {
+                                font-size: 26px;
+                                margin-block: 0px;
+                                color: #3b3b3b;
+                                font-family: 'Fredoka One', cursive;
+                                padding-left: 2%;
+                                padding-right: 2%;
+                            }
+                        }
+
+                        .tagline {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            width: 100%;
+                            height: min-content;
+
+                            p {
+                                font-size: 14px;
+                                margin-block: 0px;
+                                color: #3b3b3bbf;
+                                font-family: 'Merriweather', serif;
+                                padding-left: 2%;
+                                padding-right: 2%;
+                            }
+                        }
+                    }
+
+                    .input-box {
+                        grid-row: 2 / span 1;
+                        border: 1px solid black;
+                    }
+
+                    .button-box {
+                        grid-row: 3 / span 1;
+                        position: relative;
+
+                        .button {
+                            position: absolute;
+                            height: 45px;
+                            width: 120px;
+                            top: 5%;
+                            right: 0%;
+                            border-radius: 40px;
+                            background-color: #FE4A49;
+                            cursor: pointer;
+                            box-shadow: 2px 2px 4px 0px #3b3b3b80;
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+
+                            .text {
+                                grid-column: 1 / span 1;
+                                display: flex;
+                                justify-content: flex-end;
+                                align-items: center;
+                                padding-right: 5%;
+
+                                p {
+                                    font-family: 'Fredoka One', cursive;
+                                    font-size: 20px;
+                                    font-weight: 400;
+                                }
+                            }
+
+                            .icon {
+                                grid-column: 2 / span 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                padding-right: 30%;
+                            }
+
+                            p {
+                                color: white;
+                                font-size: 18px;
+                                font-weight: bold;
+                                margin-block: 0px;
+                            }
+                        }
+                    }
                 }
 
                 .sign-up {
@@ -185,14 +283,39 @@ const Login = () => {
                             </div>
                         </div>
                         <div className='form'>
+                            <div className='intro-box'>
+                                <div className='title'>
+                                    <p>Sign-In</p>
+                                </div>
+                                <div className='tagline'>
+                                    <p>Log-in below to start tracking</p>
+                                </div>
+                            </div>
+                            <div className='input-box'>
 
+                            </div>
+                            <div className='button-box'>
+                                <div className='button'>
+                                    <div className='text'>
+                                        <p>Go</p>
+                                    </div>
+                                    <div className='icon' onClick={() => handleLogin()}>
+                                        <ArrowRightAltRoundedIcon
+                                            style={{
+                                                fontSize: '30px',
+                                                color: 'white'
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className='sign-up'>
                             <p>Don't have an account?<span style={{color: '#FE4A49', fontWeight: 600, cursor: 'pointer', userSelect: 'auto'}}> Sign up</span></p>
                         </div>
                     </div>
                 </div>
-                <div className='design-container' onClick={() => handleLogin()}>
+                <div className='design-container'>
                     <div className='design-box'>
                         <p>Filler text</p>
                     </div>
