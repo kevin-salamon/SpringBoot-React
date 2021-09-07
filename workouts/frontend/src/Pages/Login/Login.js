@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
 import gym from '../../Assets/Images/gym.jpg'
@@ -35,7 +35,7 @@ const StyledLogin = styled.div`
     }
 
     .login-container {
-        height: 70%;
+        height: 65%;
         width: 50%;
         background-color: white;
         border-radius: 12px;
@@ -48,7 +48,6 @@ const StyledLogin = styled.div`
             display: flex;
             justify-content: center;
             align-items: center;
-
 
             .login-box {
                 width: 95%;
@@ -112,12 +111,12 @@ const StyledLogin = styled.div`
                     height: 65%;
                     width: 100%;
                     display: grid;
-                    grid-template-rows: 2fr 3fr 2fr;
+                    grid-template-rows: 2fr 4fr 1fr;
 
                     .intro-box {
                         grid-row: 1 / span 1;
                         display: flex;
-                        justify-content: center;
+                        justify-content: flex-end;
                         align-items: center;
                         flex-direction: column;
 
@@ -158,7 +157,17 @@ const StyledLogin = styled.div`
 
                     .input-box {
                         grid-row: 2 / span 1;
-                        border: 1px solid black;
+                        position: relative;
+
+                        .input-select {
+                            position: absolute;
+                            width: 96%;
+                            left: 2%;
+                            height: 30%;
+                            border-radius: 0px;
+                            cursor: pointer;
+                            transition: 0.1s ease all;
+                        }
                     }
 
                     .button-box {
@@ -174,7 +183,7 @@ const StyledLogin = styled.div`
                             border-radius: 40px;
                             background-color: #FE4A49;
                             cursor: pointer;
-                            box-shadow: 2px 2px 4px 0px #3b3b3b80;
+                            box-shadow: 1px 1px 2px 0px #3b3b3b80;
                             display: grid;
                             grid-template-columns: 1fr 1fr;
 
@@ -259,18 +268,51 @@ const StyledLogin = styled.div`
 `;
 
 const Login = () => {
+
+    const [topInputSelected, setTopInputSelected] = useState(false);
+    const [bottomInputSelected, setBottomInputSelected] = useState(false);
     const history = useHistory();
 
     const handleLogin = () => {
         history.push('/overview');
     }
+      
+    const toggleTopInput = () => { 
+        if (!topInputSelected) {
+            window.setTimeout(() => {
+              window.addEventListener("click", closeTopInput);
+            }, 50);
+        } 
+        setTopInputSelected(true);
+    }
+
+    const closeTopInput = (event) => {
+        if (event.target.id !== 'top-input') {
+            setTopInputSelected(false);
+            window.removeEventListener("click", closeTopInput);
+        }
+    }
+
+    const toggleBottomInput = () => { 
+        if (!bottomInputSelected) {
+            window.setTimeout(() => {
+              window.addEventListener("click", closeBottomInput);
+            }, 50);
+        } 
+        setBottomInputSelected(true);
+    }
+
+    const closeBottomInput = (event) => {
+        if (event.target.id !== 'bottom-input') {
+            setBottomInputSelected(false);
+            window.removeEventListener("click", closeBottomInput);
+        }
+    }
 
     return (
         <StyledLogin>
-            <div className='background-container' style={{backgroundImage: `url(${gym})`}}>
-
-            </div>
-            <div className='layered-container'></div>
+            <div className='background-container' style={{backgroundImage: `url(${gym})`}} />
+            <div className='layered-container' />
             <div className='login-container'>
                 <div className='form-container'>
                     <div className='login-box'>
@@ -292,14 +334,39 @@ const Login = () => {
                                 </div>
                             </div>
                             <div className='input-box'>
+                                <div 
+                                    className='input-select' 
+                                    id='top-input'
+                                    style={{
+                                        top: '15%',
+                                        borderRadius: topInputSelected ? '3px' : '0px',
+                                        borderBottom: topInputSelected ? 'none' : '2px solid #3b3b3b40',
+                                        boxShadow: topInputSelected ? '0px 0px 8px 1px #3b3b3b40' : 'none'
+                                    }} 
+                                    onClick={() => toggleTopInput()}
+                                >
 
+                                </div>
+                                <div 
+                                    className='input-select' 
+                                    id='bottom-input'
+                                    style={{
+                                        top: '55%',
+                                        borderRadius: bottomInputSelected ? '3px' : '0px',
+                                        borderBottom: bottomInputSelected ? 'none' : '2px solid #3b3b3b40',
+                                        boxShadow: bottomInputSelected ? '0px 0px 8px 1px #3b3b3b40' : 'none'
+                                    }} 
+                                    onClick={() => toggleBottomInput()}
+                                >
+
+                                </div>
                             </div>
                             <div className='button-box'>
-                                <div className='button'>
+                                <div className='button' onClick={() => handleLogin()}>
                                     <div className='text'>
                                         <p>Go</p>
                                     </div>
-                                    <div className='icon' onClick={() => handleLogin()}>
+                                    <div className='icon'>
                                         <ArrowRightAltRoundedIcon
                                             style={{
                                                 fontSize: '30px',
