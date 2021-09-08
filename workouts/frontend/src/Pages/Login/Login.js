@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { useHistory } from "react-router-dom";
 import gym from '../../Assets/Images/gym.jpg'
 import ArrowRightAltRoundedIcon from '@material-ui/icons/ArrowRightAltRounded';
+import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
+import LockRoundedIcon from '@material-ui/icons/LockRounded';
 // import Header from '../../Components/Header';
 
 const StyledLogin = styled.div`
@@ -107,9 +109,9 @@ const StyledLogin = styled.div`
                 .form {
                     position: absolute;
                     top: 20%;
-                    left: 0;
+                    left: 5%;
                     height: 65%;
-                    width: 100%;
+                    width: 90%;
                     display: grid;
                     grid-template-rows: 2fr 4fr 1fr;
 
@@ -167,6 +169,68 @@ const StyledLogin = styled.div`
                             border-radius: 0px;
                             cursor: pointer;
                             transition: 0.1s ease all;
+                            display: grid;
+                            grid-template-rows: 45fr 55fr;
+                            grid-template-columns: 1fr 9fr;
+
+                            .placeholder {
+                                grid-row: 1 / span 1;
+                                grid-column: 2 / span 1;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+
+                                p {
+                                    font-size: 14px;
+                                    margin-block: 0px;
+                                    color: #3b3b3b80;
+                                    text-align: left;
+                                    font-family: 'Fredoka One', cursive;
+                                }
+                            }
+
+                            .icon-final {
+                                grid-row: 2 / span 1;
+                                grid-column: 1 / span 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+
+                            .input-final {
+                                grid-row: 2 / span 1;
+                                grid-column: 2 / span 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                position: relative;
+
+                                // .psuedo {
+                                //     position: absolute;
+                                //     height: 100%;
+                                //     width: 100%;
+                                //     background-color: transparent;
+                                //     z-index: 1;
+                                // }
+                                
+                                input {
+                                    height: 70%;
+                                    width: 100%;
+                                    text-align: left;
+                                    padding: 5px;
+                                    font-family: 'Fredoka One', cursive;
+                                    font-size: 15px;
+                                    font-weight: 600;
+                                    border: none;
+                                    user-select: none;
+                                    z-index: 0;
+                                    cursor: pointer;
+
+                                    &:focus {
+                                        outline: none;
+                                    }
+                                }
+                            }
                         }
                     }
 
@@ -271,6 +335,10 @@ const Login = () => {
 
     const [topInputSelected, setTopInputSelected] = useState(false);
     const [bottomInputSelected, setBottomInputSelected] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const topInputRef = useRef();
+    const bottomInputRef = useRef();
     const history = useHistory();
 
     const handleLogin = () => {
@@ -330,7 +398,7 @@ const Login = () => {
                                     <p>Sign-In</p>
                                 </div>
                                 <div className='tagline'>
-                                    <p>Log-in below to start tracking</p>
+                                    <p>Log in below to start tracking</p>
                                 </div>
                             </div>
                             <div className='input-box'>
@@ -343,9 +411,31 @@ const Login = () => {
                                         borderBottom: topInputSelected ? 'none' : '2px solid #3b3b3b40',
                                         boxShadow: topInputSelected ? '0px 0px 8px 1px #3b3b3b40' : 'none'
                                     }} 
-                                    onClick={() => toggleTopInput()}
+                                    onClick={() => {toggleTopInput(); topInputRef.current.focus()}}
                                 >
-
+                                    <div className='placeholder' id='top-input'>
+                                        <p id='top-input'>{topInputSelected ? 'Email' : ''}</p>
+                                    </div>
+                                    <div className='icon-final' id='top-input'>
+                                        <MailOutlineRoundedIcon 
+                                            id='top-input'
+                                            style={{
+                                                fontSize: '30px',
+                                                color: topInputSelected ? '#3b3b3b' : '#3b3b3b80'
+                                            }}
+                                        />
+                                    </div>
+                                    <div className='input-final' id='top-input'>
+                                        <input 
+                                            type='text' 
+                                            id='top-input'
+                                            ref={topInputRef} 
+                                            style={{color: topInputSelected ? '#3b3b3b' : '#3b3b3bBF'}} 
+                                            onChange={(event) => setEmail(event.target.value)}
+                                            value={email}
+                                            placeholder={topInputSelected ? '' : 'Email'}
+                                        />
+                                    </div>
                                 </div>
                                 <div 
                                     className='input-select' 
@@ -356,9 +446,31 @@ const Login = () => {
                                         borderBottom: bottomInputSelected ? 'none' : '2px solid #3b3b3b40',
                                         boxShadow: bottomInputSelected ? '0px 0px 8px 1px #3b3b3b40' : 'none'
                                     }} 
-                                    onClick={() => toggleBottomInput()}
+                                    onClick={() => {toggleBottomInput(); bottomInputRef.current.focus()}}
                                 >
-
+                                    <div className='placeholder' id='bottom-input'>
+                                        <p id='bottom-input'>{bottomInputSelected ? 'Password' : ''}</p>
+                                    </div>
+                                    <div className='icon-final' id='bottom-input'>
+                                        <LockRoundedIcon 
+                                            id='bottom-input'
+                                            style={{
+                                                fontSize: '30px',
+                                                color: bottomInputSelected ? '#3b3b3b' : '#3b3b3b80'
+                                            }}
+                                        />
+                                    </div>
+                                    <div className='input-final' id='bottom-input'>
+                                        <input 
+                                            type='password'
+                                            id='bottom-input'
+                                            ref={bottomInputRef} 
+                                            style={{color: bottomInputSelected ? '#3b3b3b' : '#3b3b3bBF'}}
+                                            onChange={(event) => setPassword(event.target.value)}
+                                            value={password}
+                                            placeholder={bottomInputSelected ? '' : 'Password'}
+                                        />
+                                    </div>
                                 </div>
                             </div>
                             <div className='button-box'>
