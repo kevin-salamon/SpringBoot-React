@@ -1,5 +1,5 @@
 import { 
-    SET_NAV_MENU_SHOW
+    SET_NAV_MENU_SHOW,
 } from '../Constants/actionTypes';
 
 export function setNavMenuShow(bool) {

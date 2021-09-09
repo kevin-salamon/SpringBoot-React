@@ -17,8 +17,7 @@ const mapDispatchToProps = (dispatch) => {
         setPageSelected: (page) => dispatch(setPageSelected(page)),
         setBackgroundColor: (color) => dispatch(setBackgroundColor(color)),
         setFontColor: (color) => dispatch(setFontColor(color)),
-
-    };
+    };  
 };
   
 const LoginContainer = connect(

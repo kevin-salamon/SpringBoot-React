@@ -337,6 +337,7 @@ const Login = () => {
     const [bottomInputSelected, setBottomInputSelected] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loginShow, setLoginShow] = useState(true);
     const topInputRef = useRef();
     const bottomInputRef = useRef();
     const history = useHistory();
@@ -375,6 +376,13 @@ const Login = () => {
             setBottomInputSelected(false);
             window.removeEventListener("click", closeBottomInput);
         }
+    }
+
+    let bodyRender;
+    if (loginShow) {
+
+    } else {
+
     }
 
     return (
@@ -490,7 +498,7 @@ const Login = () => {
                             </div>
                         </div>
                         <div className='sign-up'>
-                            <p>Don't have an account?<span style={{color: '#FE4A49', fontWeight: 600, cursor: 'pointer', userSelect: 'auto'}}> Sign up</span></p>
+                            <p onClick={() => setLoginShow(false)}>Don't have an account?<span style={{color: '#FE4A49', fontWeight: 600, cursor: 'pointer', userSelect: 'auto'}}> Sign up</span></p>
                         </div>
                     </div>
                 </div>

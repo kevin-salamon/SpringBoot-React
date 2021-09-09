@@ -1,6 +1,6 @@
 /* eslint-disable import/no-anonymous-default-export */
 import {
-    SET_NAV_MENU_SHOW
+    SET_NAV_MENU_SHOW,
 } from '../Constants/actionTypes';
 
 const initialState = {
