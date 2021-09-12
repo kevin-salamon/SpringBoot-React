@@ -5,7 +5,7 @@ import gym from '../../Assets/Images/gym.jpg'
 import ArrowRightAltRoundedIcon from '@material-ui/icons/ArrowRightAltRounded';
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import LockRoundedIcon from '@material-ui/icons/LockRounded';
-// import Header from '../../Components/Header';
+import KeyboardBackspaceRoundedIcon from '@material-ui/icons/KeyboardBackspaceRounded';
 
 const StyledLogin = styled.div`
     height: 100vh;
@@ -59,6 +59,7 @@ const StyledLogin = styled.div`
                 justify-content: center;
                 align-items: center;
                 position: relative;
+                transition: 0.2s ease all;
 
                 .logo-banner {
                     position: absolute;
@@ -301,6 +302,57 @@ const StyledLogin = styled.div`
                     }
                 }
             }
+
+            .signup-box {
+                width: 95%;
+                height: 95%;
+                border-radius: 12px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                transition: 0.2s ease all;
+
+                .back-banner {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    height: 15%;
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: flex-end;
+                    padding-left: 5%;
+                }
+
+                .form {
+                    position: absolute; 
+                    top: 15%;
+                    left: 5%;
+                    width: 90%;
+                    height: 75%;
+                    border: 1px solid black;
+                }
+
+                .login {
+                    position: absolute;
+                    top: 90%;
+                    height: 10%;
+                    left: 0;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    
+
+                    p {
+                        font-size: 16px;
+                        margin-block: 0px;
+                        color: #3b3b3b80;
+                        font-family: 'Merriweather', serif;
+                    }
+                }
+            }
         }
 
         .design-container {
@@ -337,7 +389,10 @@ const Login = () => {
     const [bottomInputSelected, setBottomInputSelected] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [loginShow, setLoginShow] = useState(true);
+    const [loginOpacity, setLoginOpacity] = useState(true);
+    const [signupOpacity, setSignupOpacity] = useState(false);
+    const [loginDisplay, setLoginDisplay] = useState(true);
+    const [signupDisplay, setSignupDisplay] = useState(false);
     const topInputRef = useRef();
     const bottomInputRef = useRef();
     const history = useHistory();
@@ -378,11 +433,22 @@ const Login = () => {
         }
     }
 
-    let bodyRender;
-    if (loginShow) {
+    const setSignupPage = () => {
+        setLoginOpacity(false);
+        setTimeout(() => {
+            setLoginDisplay(false);
+            setSignupOpacity(true);
+            setSignupDisplay(true);
+        }, 200);
+    }
 
-    } else {
-
+    const setLoginPage = () => {
+        setSignupOpacity(false);
+        setTimeout(() => {
+            setSignupDisplay(false);
+            setLoginOpacity(true);
+            setLoginDisplay(true);
+        }, 200);
     }
 
     return (
@@ -391,7 +457,13 @@ const Login = () => {
             <div className='layered-container' />
             <div className='login-container'>
                 <div className='form-container'>
-                    <div className='login-box'>
+                    <div 
+                        className='login-box'
+                        style={{
+                            opacity: loginOpacity ? 1 : 0,
+                            display: loginDisplay ? 'flex' : 'none'
+                        }}
+                    >
                         <div className='logo-banner'>
                             <div className='logo'>
                                 <p>Logo</p>
@@ -498,7 +570,31 @@ const Login = () => {
                             </div>
                         </div>
                         <div className='sign-up'>
-                            <p onClick={() => setLoginShow(false)}>Don't have an account?<span style={{color: '#FE4A49', fontWeight: 600, cursor: 'pointer', userSelect: 'auto'}}> Sign up</span></p>
+                            <p onClick={() => setSignupPage()}>Don't have an account?<span style={{color: '#FE4A49', fontWeight: 600, cursor: 'pointer', userSelect: 'auto'}}> Sign up</span></p>
+                        </div>
+                    </div>
+                    <div 
+                        className='signup-box'
+                        style={{
+                            opacity: signupOpacity ? 1 : 0,
+                            display: signupDisplay ? 'flex' : 'none'
+                        }}
+                    >
+                        <div className='back-banner'>
+                            <KeyboardBackspaceRoundedIcon 
+                                style={{
+                                    fontSize: '48px',
+                                    color: '#3b3b3b80',
+                                    cursor: 'pointer'
+                                }}
+                                onClick={() => setLoginPage()}
+                            />
+                        </div>
+                        <div className='form'>
+                            
+                        </div>
+                        <div className='login'>
+                            <p onClick={() => setLoginPage()}>Already have an account?<span style={{color: '#FE4A49', fontWeight: 600, cursor: 'pointer', userSelect: 'auto'}}> Sign in</span></p>
                         </div>
                     </div>
                 </div>
