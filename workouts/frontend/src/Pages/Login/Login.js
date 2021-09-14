@@ -6,6 +6,7 @@ import ArrowRightAltRoundedIcon from '@material-ui/icons/ArrowRightAltRounded';
 import MailOutlineRoundedIcon from '@material-ui/icons/MailOutlineRounded';
 import LockRoundedIcon from '@material-ui/icons/LockRounded';
 import KeyboardBackspaceRoundedIcon from '@material-ui/icons/KeyboardBackspaceRounded';
+import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
 
 const StyledLogin = styled.div`
     height: 100vh;
@@ -331,7 +332,167 @@ const StyledLogin = styled.div`
                     left: 5%;
                     width: 90%;
                     height: 75%;
-                    border: 1px solid black;
+                    display: grid;
+                    grid-template-rows: 1.5fr 4.5fr 1.5fr;
+
+                    .intro-box {
+                        grid-row: 1 / span 1;
+                        display: flex;
+                        justify-content: flex-end;
+                        align-items: center;
+                        flex-direction: column;
+
+                        .title {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            width: 100%;
+                            height: min-content;
+
+                            p {
+                                font-size: 26px;
+                                margin-block: 0px;
+                                color: #3b3b3b;
+                                font-family: 'Fredoka One', cursive;
+                                padding-left: 2%;
+                                padding-right: 2%;
+                            }
+                        }
+
+                        .tagline {
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            width: 100%;
+                            height: min-content;
+
+                            p {
+                                font-size: 14px;
+                                margin-block: 0px;
+                                color: #3b3b3bbf;
+                                font-family: 'Merriweather', serif;
+                                padding-left: 2%;
+                                padding-right: 2%;
+                            }
+                        }
+                    }
+
+                    .input-box {
+                        grid-row: 2 / span 1;
+                        position: relative;
+
+                        .input-select {
+                            position: absolute;
+                            width: 96%;
+                            left: 2%;
+                            height: 25%;
+                            border-radius: 0px;
+                            cursor: pointer;
+                            transition: 0.1s ease all;
+                            display: grid;
+                            grid-template-rows: 45fr 55fr;
+                            grid-template-columns: 1fr 9fr;
+
+                            .placeholder {
+                                grid-row: 1 / span 1;
+                                grid-column: 2 / span 1;
+                                display: flex;
+                                justify-content: flex-start;
+                                align-items: center;
+
+                                p {
+                                    font-size: 14px;
+                                    margin-block: 0px;
+                                    color: #3b3b3b80;
+                                    text-align: left;
+                                    font-family: 'Fredoka One', cursive;
+                                }
+                            }
+
+                            .icon-final {
+                                grid-row: 2 / span 1;
+                                grid-column: 1 / span 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                            }
+
+                            .input-final {
+                                grid-row: 2 / span 1;
+                                grid-column: 2 / span 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                position: relative;
+                                
+                                input {
+                                    height: 70%;
+                                    width: 100%;
+                                    text-align: left;
+                                    padding: 5px;
+                                    font-family: 'Fredoka One', cursive;
+                                    font-size: 15px;
+                                    font-weight: 600;
+                                    border: none;
+                                    user-select: none;
+                                    z-index: 0;
+                                    cursor: pointer;
+
+                                    &:focus {
+                                        outline: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .button-box {
+                        grid-row: 3 / span 1;
+                        position: relative;
+
+                        .button {
+                            position: absolute;
+                            height: 45px;
+                            width: 120px;
+                            top: 5%;
+                            right: 0%;
+                            border-radius: 40px;
+                            background-color: #FE4A49;
+                            cursor: pointer;
+                            box-shadow: 1px 1px 2px 0px #3b3b3b80;
+                            display: grid;
+                            grid-template-columns: 2fr 1fr;
+
+                            .text {
+                                grid-column: 1 / span 1;
+                                display: flex;
+                                justify-content: flex-end;
+                                align-items: center;
+                                padding-right: 5%;
+
+                                p {
+                                    font-family: 'Fredoka One', cursive;
+                                    font-size: 16px;
+                                    font-weight: 400;
+                                }
+                            }
+
+                            .icon {
+                                grid-column: 2 / span 1;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                padding-right: 30%;
+                            }
+
+                            p {
+                                color: white;
+                                font-size: 18px;
+                                font-weight: bold;
+                                margin-block: 0px;
+                            }
+                        }
+                    }
                 }
 
                 .login {
@@ -387,17 +548,30 @@ const Login = () => {
 
     const [topInputSelected, setTopInputSelected] = useState(false);
     const [bottomInputSelected, setBottomInputSelected] = useState(false);
+    const [topSignupInputSelected, setTopSignupInputSelected] = useState(false);
+    const [middleSignupInputSelected, setMiddleSignupInputSelected] = useState(false);
+    const [bottomSignupInputSelected, setBottomSignupInputSelected] = useState(false);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [newEmail, setNewEmail] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [name, setName] = useState('');
     const [loginOpacity, setLoginOpacity] = useState(true);
     const [signupOpacity, setSignupOpacity] = useState(false);
     const [loginDisplay, setLoginDisplay] = useState(true);
     const [signupDisplay, setSignupDisplay] = useState(false);
     const topInputRef = useRef();
     const bottomInputRef = useRef();
+    const topSignupInputRef = useRef();
+    const middleSignupInputRef = useRef();
+    const bottomSignupInputRef = useRef();
     const history = useHistory();
 
     const handleLogin = () => {
+        history.push('/overview');
+    }
+
+    const handleSignup = () => {
         history.push('/overview');
     }
       
@@ -417,6 +591,38 @@ const Login = () => {
         }
     }
 
+    const toggleTopSignupInput = () => { 
+        if (!topSignupInputSelected) {
+            window.setTimeout(() => {
+              window.addEventListener("click", closeTopSignupInput);
+            }, 50);
+        } 
+        setTopSignupInputSelected(true);
+    }
+
+    const closeTopSignupInput = (event) => {
+        if (event.target.id !== 'top-signup-input') {
+            setTopSignupInputSelected(false);
+            window.removeEventListener("click", closeTopSignupInput);
+        }
+    }
+
+    const toggleMiddleSignupInput = () => { 
+        if (!middleSignupInputSelected) {
+            window.setTimeout(() => {
+              window.addEventListener("click", closeMiddleSignupInput);
+            }, 50);
+        } 
+        setMiddleSignupInputSelected(true);
+    }
+
+    const closeMiddleSignupInput = (event) => {
+        if (event.target.id !== 'middle-signup-input') {
+            setMiddleSignupInputSelected(false);
+            window.removeEventListener("click", closeMiddleSignupInput);
+        }
+    }
+
     const toggleBottomInput = () => { 
         if (!bottomInputSelected) {
             window.setTimeout(() => {
@@ -430,6 +636,22 @@ const Login = () => {
         if (event.target.id !== 'bottom-input') {
             setBottomInputSelected(false);
             window.removeEventListener("click", closeBottomInput);
+        }
+    }
+
+    const toggleBottomSignupInput = () => { 
+        if (!bottomSignupInputSelected) {
+            window.setTimeout(() => {
+              window.addEventListener("click", closeBottomSignupInput);
+            }, 50);
+        } 
+        setBottomSignupInputSelected(true);
+    }
+
+    const closeBottomSignupInput = (event) => {
+        if (event.target.id !== 'bottom-signup-input') {
+            setBottomSignupInputSelected(false);
+            window.removeEventListener("click", closeBottomSignupInput);
         }
     }
 
@@ -486,7 +708,7 @@ const Login = () => {
                                     className='input-select' 
                                     id='top-input'
                                     style={{
-                                        top: '15%',
+                                        top: '5%',
                                         borderRadius: topInputSelected ? '3px' : '0px',
                                         borderBottom: topInputSelected ? 'none' : '2px solid #3b3b3b40',
                                         boxShadow: topInputSelected ? '0px 0px 8px 1px #3b3b3b40' : 'none'
@@ -521,7 +743,7 @@ const Login = () => {
                                     className='input-select' 
                                     id='bottom-input'
                                     style={{
-                                        top: '55%',
+                                        top: '40%',
                                         borderRadius: bottomInputSelected ? '3px' : '0px',
                                         borderBottom: bottomInputSelected ? 'none' : '2px solid #3b3b3b40',
                                         boxShadow: bottomInputSelected ? '0px 0px 8px 1px #3b3b3b40' : 'none'
@@ -591,7 +813,136 @@ const Login = () => {
                             />
                         </div>
                         <div className='form'>
-                            
+                            <div className='intro-box'>
+                                <div className='title'>
+                                    <p>Sign Up</p>
+                                </div>
+                                <div className='tagline'>
+                                    <p>And start your journey</p>
+                                </div>
+                            </div>
+                            <div className='input-box'>
+                                <div 
+                                    className='input-select' 
+                                    id='top-signup-input'
+                                    style={{
+                                        top: '0%',
+                                        borderRadius: topSignupInputSelected ? '3px' : '0px',
+                                        borderBottom: topSignupInputSelected ? 'none' : '2px solid #3b3b3b40',
+                                        boxShadow: topSignupInputSelected ? '0px 0px 8px 1px #3b3b3b40' : 'none'
+                                    }} 
+                                    onClick={() => {toggleTopSignupInput(); topSignupInputRef.current.focus()}}
+                                >
+                                    <div className='placeholder' id='top-signup-input'>
+                                        <p id='top-signup-input'>{topSignupInputSelected ? 'Full Name' : ''}</p>
+                                    </div>
+                                    <div className='icon-final' id='top-signup-input'>
+                                        <AccountCircleRoundedIcon 
+                                            id='top-signup-input'
+                                            style={{
+                                                fontSize: '30px',
+                                                color: topSignupInputSelected ? '#3b3b3b' : '#3b3b3b80'
+                                            }}
+                                        />
+                                    </div>
+                                    <div className='input-final' id='top-signup-input'>
+                                        <input 
+                                            type='text' 
+                                            id='top-signup-input'
+                                            ref={topSignupInputRef} 
+                                            style={{color: topSignupInputSelected ? '#3b3b3b' : '#3b3b3bBF'}} 
+                                            onChange={(event) => setName(event.target.value)}
+                                            value={name}
+                                            placeholder={topSignupInputSelected ? '' : 'Full Name'}
+                                        />
+                                    </div>
+                                </div>
+                                <div 
+                                    className='input-select' 
+                                    id='middle-signup-input'
+                                    style={{
+                                        top: '28%',
+                                        borderRadius: middleSignupInputSelected ? '3px' : '0px',
+                                        borderBottom: middleSignupInputSelected ? 'none' : '2px solid #3b3b3b40',
+                                        boxShadow: middleSignupInputSelected ? '0px 0px 8px 1px #3b3b3b40' : 'none'
+                                    }} 
+                                    onClick={() => {toggleMiddleSignupInput(); middleSignupInputRef.current.focus()}}
+                                >
+                                    <div className='placeholder' id='middle-signup-input'>
+                                        <p id='middle-signup-input'>{middleSignupInputSelected ? 'Email' : ''}</p>
+                                    </div>
+                                    <div className='icon-final' id='middle-signup-input'>
+                                        <MailOutlineRoundedIcon 
+                                            id='middle-signup-input'
+                                            style={{
+                                                fontSize: '30px',
+                                                color: middleSignupInputSelected ? '#3b3b3b' : '#3b3b3b80'
+                                            }}
+                                        />
+                                    </div>
+                                    <div className='input-final' id='middle-signup-input'>
+                                        <input 
+                                            type='text' 
+                                            id='middle-signup-input'
+                                            ref={middleSignupInputRef} 
+                                            style={{color: middleSignupInputSelected ? '#3b3b3b' : '#3b3b3bBF'}} 
+                                            onChange={(event) => setNewEmail(event.target.value)}
+                                            value={newEmail}
+                                            placeholder={middleSignupInputSelected ? '' : 'Email'}
+                                        />
+                                    </div>
+                                </div>
+                                <div 
+                                    className='input-select' 
+                                    id='bottom-signup-input'
+                                    style={{
+                                        top: '56%',
+                                        borderRadius: bottomSignupInputSelected ? '3px' : '0px',
+                                        borderBottom: bottomSignupInputSelected ? 'none' : '2px solid #3b3b3b40',
+                                        boxShadow: bottomSignupInputSelected ? '0px 0px 8px 1px #3b3b3b40' : 'none'
+                                    }} 
+                                    onClick={() => {toggleBottomSignupInput(); bottomSignupInputRef.current.focus()}}
+                                >
+                                    <div className='placeholder' id='botom-signup-input'>
+                                        <p id='bottom-signup-input'>{bottomSignupInputSelected ? 'Password' : ''}</p>
+                                    </div>
+                                    <div className='icon-final' id='bottom-signup-input'>
+                                        <LockRoundedIcon 
+                                            id='bottom-signup-input'
+                                            style={{
+                                                fontSize: '30px',
+                                                color: bottomSignupInputSelected ? '#3b3b3b' : '#3b3b3b80'
+                                            }}
+                                        />
+                                    </div>
+                                    <div className='input-final' id='bottom-signup-input'>
+                                        <input 
+                                            type='password' 
+                                            id='bottom-signup-input'
+                                            ref={bottomSignupInputRef} 
+                                            style={{color: bottomSignupInputSelected ? '#3b3b3b' : '#3b3b3bBF'}} 
+                                            onChange={(event) => setNewPassword(event.target.value)}
+                                            value={newPassword}
+                                            placeholder={bottomSignupInputSelected ? '' : 'Password'}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='button-box'>
+                                <div className='button' onClick={() => handleSignup()}>
+                                    <div className='text'>
+                                        <p>Sign Up</p>
+                                    </div>
+                                    <div className='icon'>
+                                        <ArrowRightAltRoundedIcon
+                                            style={{
+                                                fontSize: '30px',
+                                                color: 'white'
+                                            }}
+                                        />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className='login'>
                             <p onClick={() => setLoginPage()}>Already have an account?<span style={{color: '#FE4A49', fontWeight: 600, cursor: 'pointer', userSelect: 'auto'}}> Sign in</span></p>
